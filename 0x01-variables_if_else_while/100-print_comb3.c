@@ -19,8 +19,8 @@ for (ones = tens + 1; ones <= 9; ones++)
 
 if (tens < 8)
 {
-    putchar(',');
-    putchar(' ');
+putchar(',');
+putchar(' ');
 }
 	}
 }
