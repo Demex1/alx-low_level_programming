@@ -9,7 +9,7 @@
 int main(void)
 {
 int n1 = 0,n2 = 1,n3,i;      
-printf("%d %d", ",n1,n2); 
+printf("%d %d",n1,n2); 
 for(i=2;i<=50;++i)
 {    
 n3=n1+n2;    
