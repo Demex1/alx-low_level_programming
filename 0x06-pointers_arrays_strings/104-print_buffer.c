@@ -33,7 +33,7 @@ if ((i + x) >= size)
 break;
 
 else if (*(b + i + x) >= 31 &&
- *(b + i + x) <= 126)
+*(b + i + x) <= 126)
 printf("%c", *(b + i + x));
 
 else
