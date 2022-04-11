@@ -1,42 +1,78 @@
 #include "dog.h"
 #include <stdlib.h>
+int _strlen(char *s);
+char *_strcpy(char *x, char *y);
 /**
- * new_dog - creates a new dog.
- * @name: pointer to a char for name of dog
- * @age: age of dog
- * @owner: pointer to a char for owner of dog
- * Return: pointer to a new dog of type dog_t
- **/
+ * new_dog - makes a new dog, memory and all
+ * @name: name to create mem and assign to for dog
+ * @age: age to assign to for dog
+ * @owner: owner to create mem and assign to for dog
+ *
+ * Return: pointer to new dog_t (struct dog)
+ */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-int nameLen, ownerLen, i;
-dog_t *d1;
+dog_t *new_d;
 
-d1 = (dog_t *)malloc(sizeof(dog_t));
-if (d1 == NULL)
+new_d = malloc(sizeof(dog_t));
+if (new_d == NULL)
 return (NULL);
-nameLen = ownerLen = 0;
-while (name[nameLen++])
-;
-while (owner[ownerLen++])
-;
-d1->name = malloc(nameLen * sizeof(d1->name));
-if (d1->name == NULL)
+if (name == NULL)
+new_d->name = NULL;
+else
 {
-free(d1);
+new_d->name = malloc(_strlen(name) + 1);
+if (new_d->name == NULL)
+{
+free(new_d);
 return (NULL);
 }
-for (i = 0; i <= nameLen; i++)
-d1->name[i] = name[i];
-d1->age = age;
-d1->owner = malloc(ownerLen * sizeof(d1->owner));
-if (d1->owner == NULL)
+new_d->name = _strcpy(new_d->name, name);
+}
+if (owner == NULL)
+new_d->owner = NULL;
+else
 {
-free(d1->name);
-free(d1);
+new_d->owner = malloc(_strlen(owner) + 1);
+if (new_d->owner == NULL)
+{
+free(new_d->name);
+free(new_d);
 return (NULL);
 }
-for (i = 0; i <= ownerLen; i++)
-d1->owner[i] = owner[i];
-return (d1);
+new_d->owner = _strcpy(new_d->owner, owner);
+}
+new_d->age = age;
+return (new_d);
+}
+/**
+ * _strlen - gets len of str
+ * @s: string to get length of
+ *
+ * Return: length of s
+ */
+int _strlen(char *s)
+{
+int i = 0;
+
+for (i = 0; s[i]; i++)
+;
+return (i);
+}
+/**
+ * _strcpy - copies string from y to x
+ *
+ * @x: pointer to destination of string
+ * @y: pointer to source string to copy from
+ *
+ * Return: pointer to dest
+ */
+char *_strcpy(char *x, char *y)
+{
+char *a = x;
+
+while (*y)
+*a++ = *y++;
+*a = '\0';
+return (x);
 }
