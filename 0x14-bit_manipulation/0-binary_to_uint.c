@@ -1,46 +1,47 @@
 #include "main.h"
-/**
- * _stoi - converts chars to ints
- * @c: char to convert
- * Return: converted int
- */
-unsigned int _stoi(char c)
-{
-return ((unsigned int) c - '0');
-}
-/**
- * _strlen - calculates the length of the string
- * @s: input
- * Return: length of string
- */
-unsigned int _strlen(const char *s)
-{
-unsigned int i;
 
-for (i = 0; s[i]; i++)
-;
+/**
+ * _strlen - lenght of string
+ * @s:char
+ * Return:int
+ */
+int _strlen(const char *s)
+{
+int i;
+
+for (i = 0; s[i] != '\0'; i++)
+{
+continue;
+}
 return (i);
 }
 /**
- * binary_to_uint - converts a string of 1's and 0's to a decimal number
- * @b: string to convert
- * Return: unsigned decimal number
+ * binary_to_uint - convert binary to unsigned int
+ * @b:string from 0 and 1 else NULL
+ *
+ * Return:unsigned int
  */
 unsigned int binary_to_uint(const char *b)
 {
-int i;
-unsigned int result, tmp, expo;
+unsigned int k = 1;
+unsigned int i = 0;
+int c;
+unsigned int len;
 
-if (!b)
+if (b == NULL)
 return (0);
-result = tmp = 0;
-expo = 1;
-for (i = _strlen(b) - 1; b[i]; i--, expo *= 2)
+
+len = _strlen(b);
+
+for (c = len - 1; c >= 0; c--)
 {
-if (b[i] != '0' && b[i] != '1')
+if (b[c] != '0' && b[c] != '1')
 return (0);
-tmp = _stoi(b[i]);
-result += tmp * expo;
+if (b[c] == '1')
+{
+i += k;
 }
-return (result);
+k *= 2;
+}
+return (i);
 }
